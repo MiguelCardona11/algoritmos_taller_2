@@ -1,5 +1,7 @@
 import numpy as np
 from scipy.sparse import lil_matrix
+from scipy.sparse import save_npz
+import os
 
 def crear_matriz_dispersa_aleatoria(cantidad_filas):
     """
@@ -19,9 +21,24 @@ def crear_matriz_dispersa_aleatoria(cantidad_filas):
 
     return matriz_dispersa.tocsr()
 
+def crear_y_guardar_matriz(n):
+    """
+    Crea una matriz dispersa de tamaño n x 2^n con valores aleatorios y la guarda en un archivo NPZ.
+    """
+    matriz_dispersa = crear_matriz_dispersa_aleatoria(n)
+    carpeta_destino = "matrices"
+    # Crear la carpeta si no existe
+    os.makedirs(carpeta_destino, exist_ok=True)
+    
+    nombre_archivo = os.path.join(carpeta_destino, f"matriz_dispersa_{n}.npz") # Construir la ruta completa del archivo
+    save_npz(nombre_archivo, matriz_dispersa) # Guardar como NPZ (formato disperso, más eficiente)
+    
+    print(f"--> Matriz dispersa guardada en {nombre_archivo} en formato CSR")
+    return matriz_dispersa
+
 def ejecutarEjercicioUno():
     n = int(input("Ingrese la cantidad de filas de la matriz dispersa (n): "))
-    matriz_dispersa = crear_matriz_dispersa_aleatoria(n)
+    matriz_dispersa = crear_y_guardar_matriz(n)
     
     print(f"\nSe crea una matriz de tamaño {n}x{2**n} con valores aleatorios\n{matriz_dispersa}\n")
 
