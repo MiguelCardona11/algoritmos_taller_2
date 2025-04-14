@@ -35,7 +35,7 @@ def procesamiento_en_bloques(matriz, tam_bloque):
 
 def ejecutarEjercicioDos():
     n_intersecciones = int(input("Ingrese la cantidad de intersecciones (filas) que tiene la ciudad, la cantidad de calles será 2^intersecciones: "))
-    tam_bloque = max(1, int(n_intersecciones / n_intersecciones))
+    tam_bloque = max(1, int(n_intersecciones/4))
 
     nombre_archivo_npz = os.path.join("matrices", f"matriz_dispersa_{n_intersecciones}.npz")
 
