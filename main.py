@@ -1,6 +1,7 @@
 from ejercicios.ejercicio1 import ejecutarEjercicioUno
 from ejercicios.ejercicio2 import ejecutarEjercicioDos
 from ejercicios.ejercicio3 import ejecutarEjercicioTres
+from ejercicios.ejercicio4 import ejecutarEjercicioCuatro
 
 def main():
     while True:
@@ -18,6 +19,8 @@ def main():
             ejecutarEjercicioDos()
         elif opcion == "3":
             ejecutarEjercicioTres()
+        elif opcion == "4":
+            ejecutarEjercicioCuatro()
         elif opcion == "99":
             print("Saliendo del programa...")
             break
