@@ -1,6 +1,7 @@
 import numpy as np
 import time
 import os
+import tracemalloc
 from ejercicios.ejercicio1 import crear_y_guardar_matriz
 from scipy.sparse import load_npz
 
@@ -51,9 +52,13 @@ def ejecutarEjercicioDos():
     
     # Procesar tráfico en bloques
     inicio = time.time()
+    tracemalloc.start()
     promedio_trafico = procesamiento_en_bloques(matriz_trafico, tam_bloque)
+    current, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
     fin = time.time()
 
     print(f"\nPromedio de tráfico por intersección: \n{promedio_trafico}")
     print(f"\nTiempo de ejecución: {fin - inicio:.4f} segundos")
+    print(f"Memoria pico: {peak / 1024:.2f} KB")
     
